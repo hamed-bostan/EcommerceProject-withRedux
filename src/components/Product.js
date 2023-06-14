@@ -7,7 +7,7 @@ import trashIcon from "../assests/trash.svg";
 
 const Product = ({ products }) => {
   const { id, title, price, image } = products;
-  const { state, dispatch } = useContext(CartContext);
+  // const { state, dispatch } = useContext(CartContext);
 
   return (
     <div className={styles.product}>
@@ -19,7 +19,7 @@ const Product = ({ products }) => {
           details
         </Link>
         <div>
-          {quantityCount(state, id) === 1 && (
+          {/* {quantityCount(state, id) === 1 && (
             <button
               className={styles.button}
               onClick={() =>
@@ -41,10 +41,10 @@ const Product = ({ products }) => {
 
           {quantityCount(state, id) > 0 && (
             <span className={styles.counter}>{quantityCount(state, id)}</span>
-          )}
+          )} */}
 
           {/* check if the item is in the cart */}
-          {isInCart(state, id) ? (
+          {/* {isInCart(state, id) ? (
             <button
               className={styles.button}
               onClick={() => dispatch({ type: "INCREASE", payload: products })}
@@ -58,7 +58,7 @@ const Product = ({ products }) => {
             >
               add to cart
             </button>
-          )}
+          )} */}
         </div>
       </div>
     </div>
