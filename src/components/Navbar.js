@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import cart from "../assests/cart.png";
 import { Link } from "react-router-dom";
-import { CartContext } from "./CartContextProvider";
 import styles from "../styles/Navbar.module.css";
 import { FaBars } from "react-icons/fa";
 import { FaCartArrowDown } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const { state } = useContext(CartContext);
+  const state = useSelector((state) => state.cartState);
+
   const [showLinks, setShowLinks] = useState(false);
 
   const toggleHandler = () => {
@@ -31,7 +32,7 @@ const Navbar = () => {
                 onClick={toggleHandler}
                 className={styles.navbarToggleButton}
               >
-                <FaBars  />
+                <FaBars />
               </button>
             </article>
             {/* end of header section*/}

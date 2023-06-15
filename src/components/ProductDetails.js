@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { ProductsContext } from "./ProductsContextProvider";
 import styles from "../styles/ProductDetails.module.css";
+import { useSelector } from "react-redux";
 
 const ProductDetails = () => {
   let { productId } = useParams();
-  const products = useContext(ProductsContext);
+  const products = useSelector((state) => state.productsState.products);
 
   const singleProduct = products.find(
     (product) => parseInt(product.id) === parseInt(productId)

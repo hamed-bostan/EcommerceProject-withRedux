@@ -5,7 +5,6 @@ import ProductDetails from "./components/ProductDetails";
 // Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import CartContextProvider from "./components/CartContextProvider";
 import Carts from "./components/Carts";
 import SingUp from "./components/SignUp";
 import Login from "./components/Login";
@@ -17,13 +16,13 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
-          {/* <Route path="products/:productId" element={<ProductDetails />} /> */}
+          <Route path="products/:productId" element={<ProductDetails />} />
           <Route path="/" element={<Products />} />
-          {/* <Route path="/cart" element={<Carts />} /> */}
-          {/* <Route path="/signup" element={<SingUp />} /> */}
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/cart" element={<Carts />} />
+          <Route path="/signup" element={<SingUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </Provider>

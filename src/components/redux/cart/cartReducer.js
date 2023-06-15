@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { useReducer } from "react";
 
 const initialState = {
   selectedItems: [],
@@ -19,7 +19,7 @@ const sumItems = (item) => {
   return { itemsCounter, totalPrice };
 };
 
-const CartReducer = (state, action) => {
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_ITEM":
       if (!state.selectedItems.find((item) => item.id === action.payload.id)) {
@@ -80,16 +80,4 @@ const CartReducer = (state, action) => {
   }
 };
 
-export const CartContext = createContext();
-
-const CartContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(CartReducer, initialState);
-
-  return (
-    <CartContext.Provider value={{ state, dispatch }}>
-      {children}
-    </CartContext.Provider>
-  );
-};
-
-export default CartContextProvider;
+export default cartReducer;

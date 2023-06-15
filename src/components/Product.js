@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import { quantityCount, shorten, isInCart } from "./functions";
 import { Link } from "react-router-dom";
-import { CartContext } from "./CartContextProvider";
 import styles from "../styles/Product.module.css";
 import trashIcon from "../assests/trash.svg";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addItem,
+  removeItem,
+  increase,
+  decrease,
+} from "./redux/cart/cartAction";
 
 const Product = ({ products }) => {
   const { id, title, price, image } = products;
-  // const { state, dispatch } = useContext(CartContext);
+  const state = useSelector((state) => state.cartState);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.product}>
@@ -19,12 +26,10 @@ const Product = ({ products }) => {
           details
         </Link>
         <div>
-          {/* {quantityCount(state, id) === 1 && (
+          {quantityCount(state, id) === 1 && (
             <button
               className={styles.button}
-              onClick={() =>
-                dispatch({ type: "REMOVE_ITEM", payload: products })
-              }
+              onClick={() => dispatch(removeItem(products))}
             >
               <img src={trashIcon} alt="trashIcon" />
             </button>
@@ -33,7 +38,7 @@ const Product = ({ products }) => {
           {quantityCount(state, id) > 1 && (
             <button
               className={styles.button}
-              onClick={() => dispatch({ type: "DECREASE", payload: products })}
+              onClick={() => dispatch(decrease(products))}
             >
               -
             </button>
@@ -41,24 +46,24 @@ const Product = ({ products }) => {
 
           {quantityCount(state, id) > 0 && (
             <span className={styles.counter}>{quantityCount(state, id)}</span>
-          )} */}
+          )}
 
           {/* check if the item is in the cart */}
-          {/* {isInCart(state, id) ? (
+          {isInCart(state, id) ? (
             <button
               className={styles.button}
-              onClick={() => dispatch({ type: "INCREASE", payload: products })}
+              onClick={() => dispatch(increase(products))}
             >
               +
             </button>
           ) : (
             <button
               className={styles.add_to_cart}
-              onClick={() => dispatch({ type: "ADD_ITEM", payload: products })}
+              onClick={() => dispatch(addItem(products))}
             >
               add to cart
             </button>
-          )} */}
+          )}
         </div>
       </div>
     </div>
